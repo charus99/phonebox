@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "ko": {
     "strings": {
+      "s.phoneMic.title": "휴대폰 마이크",
+      "s.phoneMic.enable": "휴대폰 마이크를 컴퓨터 마이크로 사용",
+      "s.phoneMic.hint": "휴대폰 마이크 소리는 VB-CABLE 같은 가상 케이블로 재생되고, 앱은 케이블의 반대쪽(CABLE Output)을 마이크로 선택합니다. 설정은 케이블을 확인하고, scrcpy-server 5.0.1이 없으면 GitHub에서 내려받은 뒤 마이크를 켭니다. 휴대폰은 USB로 연결되어 있어야 합니다. 추가 옵션: 고급 › JSON(phoneMic).",
+      "s.phoneMic.setup": "설정",
+      "s.phoneMic.settingUp": "설정하는 중…",
+      "s.phoneMic.saveFirst": "먼저 다른 변경 사항을 저장하거나 되돌린 다음 설정을 누르세요.",
+      "s.phoneMic.setupFailed": "에이전트에 연결할 수 없습니다.",
+      "s.phoneMic.startMuted": "음소거로 시작",
+      "s.phoneMic.toggle": "음소거 / 해제",
+      "s.phoneMic.muteNote": "음소거는 이 컴퓨터에서만 마이크 소리를 끕니다. 휴대폰 마이크가 켜져 있는 동안 휴대폰은 계속 녹음합니다. 녹음을 멈추려면 끄세요.",
+      "s.phoneMic.reconnects": "{n}번 다시 연결됨, 최근 {ms} ms",
       "s.feeds.import": "+ 피드 가져오기 (OPML / 일괄)",
       "s.feeds.importTitle": "RSS / Atom 피드 가져오기",
       "s.feeds.importHint": "OPML 내보내기 파일(Feedly, Inoreader, NetNewsWire 등)에서 분류가 있는 피드를 가져오거나 줄을 붙여 넣으세요(분류 | 이름 | URL 또는 이름 | URL).",
@@ -1070,6 +1081,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "내장: 모니터 끄기",
       "Built-in: turn monitors off (X11)": "내장: 모니터 끄기 (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "내장: 컴퓨터를 깨우기 (Wake- on- LAN; arguments: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "기본 제공: 휴대폰 마이크 음소거 / 해제(인수: mute 또는 unmute로 지정)",
       "CI fails on my pull request": "풀 요청에 CI 실패",
       "CPU": "CPU",
       "CPU load": "CPU 로드",

@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "th": {
     "strings": {
+      "s.phoneMic.title": "ไมค์ของโทรศัพท์",
+      "s.phoneMic.enable": "ใช้ไมโครโฟนของโทรศัพท์เป็นไมโครโฟนของคอมพิวเตอร์",
+      "s.phoneMic.hint": "เสียงจากไมค์ของโทรศัพท์จะเล่นเข้าสายเสมือน เช่น VB-CABLE แล้วแอปจะเลือกปลายอีกด้านของสาย (CABLE Output) เป็นไมโครโฟน ปุ่มตั้งค่าจะตรวจสอบสาย ดาวน์โหลด scrcpy-server 5.0.1 จาก GitHub หากยังไม่มี แล้วเปิดไมค์ โทรศัพท์ต้องต่อผ่าน USB ตัวเลือกเพิ่มเติม: ขั้นสูง › JSON (phoneMic)",
+      "s.phoneMic.setup": "ตั้งค่า",
+      "s.phoneMic.settingUp": "กำลังตั้งค่า…",
+      "s.phoneMic.saveFirst": "บันทึกหรือย้อนการเปลี่ยนแปลงอื่นก่อน แล้วจึงกดตั้งค่า",
+      "s.phoneMic.setupFailed": "ติดต่อเอเจนต์ไม่ได้",
+      "s.phoneMic.startMuted": "เริ่มแบบปิดเสียง",
+      "s.phoneMic.toggle": "ปิด / เปิดเสียง",
+      "s.phoneMic.muteNote": "การปิดเสียงทำให้ไมค์เงียบเฉพาะบนคอมพิวเตอร์เครื่องนี้ ขณะที่ไมค์ของโทรศัพท์ยังเปิดอยู่ โทรศัพท์จะยังบันทึกเสียงต่อไป ปิดไมค์เพื่อหยุดบันทึก",
+      "s.phoneMic.reconnects": "เชื่อมต่อใหม่ {n} ครั้ง ล่าสุดใช้ {ms} ms",
       "s.feeds.import": "+ นำเข้าฟีด (OPML / ทีละหลายรายการ)",
       "s.feeds.importTitle": "นำเข้าฟีด RSS / Atom",
       "s.feeds.importHint": "นำเข้าฟีดพร้อมหมวดหมู่จากไฟล์ส่งออก OPML (Feedly, Inoreader, NetNewsWire ฯลฯ) หรือวางบรรทัดข้อความ (หมวดหมู่ | ชื่อ | URL หรือ ชื่อ | URL)",
@@ -1070,6 +1081,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "ตั้งค่าภายใน: ปิดการใช้งานจอภาพ",
       "Built-in: turn monitors off (X11)": "ส่วนเสริม: ปิดการใช้งานจอภาพ (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "ตั้งค่าไว้: เปิดเครื่องคอมพิวเตอร์ (Wake- on- LAN; อาร์กิวเมนต์: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "ในตัว: ปิด / เปิดเสียงไมค์ของโทรศัพท์ (อาร์กิวเมนต์: mute หรือ unmute เพื่อกำหนด)",
       "CI fails on my pull request": "CI ล้มเหลวในการดึงคำขอของฉัน",
       "CPU": "CPU",
       "CPU load": "โหลด CPU",

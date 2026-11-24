@@ -50,6 +50,8 @@ public sealed class AgentConfig
     public ConsoleConfig Console { get; set; } = new();
     /// <summary>Steam friends presence (the Web API key stays on this computer and is never sent to the phone).</summary>
     public SteamConfig Steam { get; set; } = new();
+    /// <summary>The phone's microphone, played into a virtual audio cable (Windows; off by default).</summary>
+    public PhoneMicConfig PhoneMic { get; set; } = new();
 
     /// <summary>The pages a phone shows: its own selection (Settings › Phones), or all of them.</summary>
     public IEnumerable<PageConfig> PagesFor(string? deviceId)
@@ -99,7 +101,7 @@ public sealed class AgentConfig
         shortcuts = Shortcuts.Select(s =>
         {
             var pic = shortcutIcon?.Invoke(s);
-            return new { s.Id, s.Label, s.Icon, s.Color, toggle = s.Toggle || s.Cmd == "builtin:mute", hold = s.LongPress is not null, cycle = s.Cmd == "builtin:cycle" && s.Cycle is { Count: > 0 }, iconRev = pic?.Rev, iconUpload = pic?.Upload == true };
+            return new { s.Id, s.Label, s.Icon, s.Color, toggle = s.Toggle || s.Cmd is "builtin:mute" or PhoneDevices.MicCmd, hold = s.LongPress is not null, cycle = s.Cmd == "builtin:cycle" && s.Cycle is { Count: > 0 }, iconRev = pic?.Rev, iconUpload = pic?.Upload == true };
         }),
         // names only (for the Rules widget); what a rule matches on stays here
         rules = Rules.Select(r => new { r.Id, r.Name, r.Enabled, r.When }),
@@ -436,6 +438,28 @@ public sealed class ChargeConfig
     public string? OffShortcut { get; set; }
 }
 
+/// <summary>
+/// The phone mic (see PhoneMic.cs): scrcpy-server 5.0.1 on the phone sends raw PCM over adb, played into a render
+/// endpoint picked by name (a virtual cable, so apps pick its other end as their microphone).
+/// </summary>
+public sealed class PhoneMicConfig
+{
+    public bool Enabled { get; set; }
+    /// <summary>scrcpy audio source: "mic-camcorder" (loud, no echo cancelling) works while an assistant holds "mic".</summary>
+    public string Source { get; set; } = "mic-camcorder";
+    /// <summary>The first active playback device whose name contains this.</summary>
+    public string Endpoint { get; set; } = "CABLE Input";
+    /// <summary>Audio kept buffered before playing (ms); more piles up only to <see cref="MaxBufferMs"/>.</summary>
+    public int LatencyMs { get; set; } = 50;
+    public int MaxBufferMs { get; set; } = 150;
+    /// <summary>Linear gain (1 = as captured).</summary>
+    public double Gain { get; set; } = 1;
+    /// <summary>scrcpy-server 5.0.1 (empty: "scrcpy-server" next to the agent or next to the config file).</summary>
+    public string? ServerPath { get; set; }
+    /// <summary>Starts muted (the phone's Control Deck button toggles it while the agent runs).</summary>
+    public bool StartMuted { get; set; }
+}
+
 public sealed class ObsConfig
 {
     public bool Enabled { get; set; }
@@ -512,7 +536,8 @@ public sealed class Shortcut
     [JsonConverter(typeof(IconJsonConverter))]
     public string Icon { get; set; } = "";
     public string Color { get; set; } = "#6b7280";
-    /// <summary>A program, address or file; or builtin:lock / monitor-off / mute / keys / text / macro.</summary>
+    /// <summary>A program, address or file; or builtin:lock / monitor-off / mute / keys / text / macro, or the phone
+    /// mic command (builtin:phone-mic, see PhoneDevices).</summary>
     public string Cmd { get; set; } = "";
     /// <summary>Program arguments; the key combination for builtin:keys ("ctrl+shift+m"); the text for builtin:text.</summary>
     public string? Args { get; set; }
@@ -797,6 +822,14 @@ public sealed partial class ConfigStore(string path)
         c.Ping ??= new();
         c.Ping.Adapters = (c.Ping.Adapters ?? []).Where(a => !string.IsNullOrWhiteSpace(a)).Select(a => a.Trim()).Distinct(StringComparer.OrdinalIgnoreCase).Take(16).ToList();
         c.Obs ??= new();
+        c.PhoneMic ??= new();
+        var mic = c.PhoneMic;
+        if (!ScrcpyAudio.MicSources.Contains(mic.Source)) mic.Source = "mic-camcorder";
+        mic.Endpoint = string.IsNullOrWhiteSpace(mic.Endpoint) ? "CABLE Input" : mic.Endpoint.Trim();
+        mic.LatencyMs = Math.Clamp(mic.LatencyMs, 10, 500);
+        mic.MaxBufferMs = Math.Clamp(mic.MaxBufferMs, mic.LatencyMs + 20, 900);
+        mic.Gain = double.IsFinite(mic.Gain) ? Math.Clamp(mic.Gain, 0, 8) : 1;
+        mic.ServerPath = string.IsNullOrWhiteSpace(mic.ServerPath) ? null : mic.ServerPath.Trim();
         c.Discord ??= new();
         c.Discord.ClientId = string.IsNullOrWhiteSpace(c.Discord.ClientId) ? null : c.Discord.ClientId.Trim();
         c.Discord.ClientSecret = string.IsNullOrWhiteSpace(c.Discord.ClientSecret) ? null : c.Discord.ClientSecret.Trim();

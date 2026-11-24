@@ -703,6 +703,16 @@ nav a.on::before { color: var(--accent); }
         <div class="row"><button class="btn sm" id="obsTest" data-i18n="s.test">Test</button><span class="hint" id="obsState"></span></div>
       </div>
 
+      <div class="card" id="phoneMicCard">
+        <h3 data-i18n="s.phoneMic.title">Phone mic</h3>
+        <div class="row" style="margin-bottom:8px"><label class="switch"><input type="checkbox" data-bind="phoneMic.enabled" aria-labelledby="phoneMicEnabledLabel"><span></span></label> <span id="phoneMicEnabledLabel" data-i18n="s.phoneMic.enable">Use the phone's microphone as a computer microphone</span></div>
+        <div class="row" style="margin-bottom:8px"><button class="btn sm" id="phoneMicSetup" data-setup="/api/phone-mic/setup" data-i18n="s.phoneMic.setup">Set up</button><span class="hint" id="phoneMicSetupState" aria-live="polite"></span></div>
+        <p class="hint" style="margin:0 0 12px" data-i18n="s.phoneMic.hint">The phone's mic plays into a virtual cable such as VB-CABLE; apps pick the cable's other end (CABLE Output) as their microphone. Set up checks for the cable, downloads scrcpy-server 5.0.1 from GitHub if it is missing, and turns the mic on. The phone must be on USB. More options: Advanced › JSON (phoneMic).</p>
+        <div class="row" style="margin:4px 0 8px"><label class="switch"><input type="checkbox" data-bind="phoneMic.startMuted" aria-labelledby="phoneMicMutedLabel"><span></span></label> <span id="phoneMicMutedLabel" data-i18n="s.phoneMic.startMuted">Start muted</span></div>
+        <div class="row"><button class="btn sm" id="phoneMicMute" data-i18n="s.phoneMic.toggle">Mute / unmute</button><span class="hint" id="phoneMicState"></span></div>
+        <p class="hint" style="margin:6px 0 0" data-i18n="s.phoneMic.muteNote">Mute only silences the mic on this computer; while the phone mic is on, the phone keeps recording. Turn it off to stop recording.</p>
+      </div>
+
       <div class="card">
         <h3 data-i18n="s.night.title">Night mode</h3>
         <div class="row" style="margin-bottom:12px"><label class="switch"><input type="checkbox" data-bind="night.enabled"><span></span></label> <span data-i18n="s.night.enable">Dim the screen at night and show only the clock</span></div>
@@ -1201,6 +1211,7 @@ const PRESETS = [
   ['builtin:monitor-off', 'Built-in: turn monitors off'],
   ['builtin:lock', 'Built-in: lock the PC'],
   ['builtin:wake', 'Built-in: wake a computer (Wake-on-LAN; args: MAC)'],
+  ['builtin:phone-mic', 'Built-in: phone mic mute / unmute (args: mute or unmute to set it)'],
 ];
 
 let cfg = null;        // settings being edited
@@ -2417,6 +2428,41 @@ $('haTest').onclick = async () => {
     $('haState').textContent = r.result;
   } catch (_) { $('haState').textContent = 'Could not check'; }
 };
+// Phone mic: live state under the settings (Windows only; the agent leaves it off elsewhere).
+async function renderPhoneMicState() {
+  if (document.hidden || !$('phoneMicState')) return;
+  try {
+    const r = await (await fetch('/api/phone-mic', { cache: 'no-store' })).json();
+    const m = r.mic;
+    const parts = [m.output && m.state === 'live' ? m.text + ' → ' + m.output : m.text];
+    if (m.problem) parts.push(m.problem);
+    if (m.outputProblem && m.enabled) parts.push(m.outputProblem);
+    if (m.reconnects) parts.push(t('s.phoneMic.reconnects', { n: m.reconnects, ms: m.lastRecoveryMs }));
+    $('phoneMicState').textContent = parts.join(' · ');
+    $('phoneMicMute').disabled = !m.enabled;
+  } catch (_) { $('phoneMicState').textContent = ''; }
+}
+// Set up (the only thing that turns the mic on besides its switch): runs on the agent, which saves the settings
+// itself, so the page reloads them afterwards; unsaved edits would be lost, so it asks for a save first.
+for (const id of ['phoneMicSetup']) {
+  $(id).onclick = async () => {
+    const b = $(id), out = $(id + 'State');
+    if (JSON.stringify(cfg) !== saved) { out.textContent = t('s.phoneMic.saveFirst'); return; }
+    b.disabled = true; out.textContent = t('s.phoneMic.settingUp');
+    try {
+      const r = await (await fetch(b.dataset.setup, { method: 'POST' })).json();
+      out.textContent = r.message;
+      if (r.ok) { await load(); $(id + 'State').textContent = r.message; }
+    } catch (_) { out.textContent = t('s.phoneMic.setupFailed'); }
+    b.disabled = false;
+  };
+}
+$('phoneMicMute').onclick = async () => {
+  try { await fetch('/api/phone-mic/mute', { method: 'POST' }); } catch (_) {}
+  renderPhoneMicState();
+};
+setInterval(renderPhoneMicState, 2000);
+
 $('obsTest').onclick = async () => {
   $('obsState').textContent = 'connecting…';
   try {
@@ -2717,7 +2763,7 @@ const RULE_PRESETS = [
 let activeRules = [];
 
 function renderRules() {
-  cfg.rules ??= []; cfg.calendars ??= []; cfg.feeds ??= []; cfg.cameras ??= { ffmpeg: '', sources: [] }; cfg.photos ??= { source: 'folder', folder: '', subfolders: true, immichUrl: '', immichKey: '', immichAlbum: '', immichAlbumName: '' }; cfg.console ??= { profiles: [] }; cfg.phones ??= []; cfg.homeAssistant ??= {}; cfg.obs ??= { enabled: false, url: 'ws://127.0.0.1:4455' }; cfg.discord ??= { enabled: false }; cfg.steam ??= { enabled: false };
+  cfg.rules ??= []; cfg.calendars ??= []; cfg.feeds ??= []; cfg.cameras ??= { ffmpeg: '', sources: [] }; cfg.photos ??= { source: 'folder', folder: '', subfolders: true, immichUrl: '', immichKey: '', immichAlbum: '', immichAlbumName: '' }; cfg.console ??= { profiles: [] }; cfg.phones ??= []; cfg.homeAssistant ??= {}; cfg.obs ??= { enabled: false, url: 'ws://127.0.0.1:4455' }; cfg.phoneMic ??= { enabled: false, source: 'mic-camcorder', endpoint: 'CABLE Input', latencyMs: 50, maxBufferMs: 150, gain: 1, serverPath: null, startMuted: false }; cfg.discord ??= { enabled: false }; cfg.steam ??= { enabled: false };
   $('rulePresets').replaceChildren(...RULE_PRESETS.map(([label, make]) => h('button', { class: 'btn', onclick: () => {
     cfg.rules.push({ id: '', enabled: true, ...make() });
     renderRules(); changed();
@@ -3710,6 +3756,7 @@ async function loadInfo() {
     pill.className = 'pill' + (i.connected ? ' on' : '');
     pill.querySelector('span').textContent = i.connected ? t('s.conn.connected') + (i.via ? ' · ' + i.via : '') : t('s.conn.notConnected');
     osName = i.os || 'windows';
+    if ($('phoneMicCard')) { $('phoneMicCard').hidden = osName !== 'windows'; if (osName === 'windows') renderPhoneMicState(); }
     $('followComputerLockOption').style.display = osName === 'macos' ? '' : 'none';
     $('adbFound').textContent = i.adb ? t('s.conn.adbFound', { path: i.adb }) : t('s.conn.adbNotFound') + ' — ' + ({ linux: 'sudo apt install adb', macos: 'brew install android-platform-tools' }[osName] || 'winget install Google.PlatformTools');
     $('appMissing').hidden = !(i.appMissing && i.appMissing.length);

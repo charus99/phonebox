@@ -38,6 +38,8 @@ public sealed class AdbReverse(ConfigStore cfg, ILogger<AdbReverse> log, AgentEn
     public string? UsbProblem => UsbDoctor.Diagnose(ChargeGuard.LastReport, Connected, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
     private string? _lastProblem;
     public string Devices => string.Join(", ", _devices);
+    /// <summary>Connected phones after the deviceSerial filter (the phone mic picks the first one).</summary>
+    public string[] DeviceList => _devices;
     /// <summary>All attached devices, before the deviceSerial filter (for the settings page).</summary>
     public string[] AllDevices => _all;
     public event Action? StateChanged;

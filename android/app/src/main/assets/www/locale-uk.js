@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "uk": {
     "strings": {
+      "s.phoneMic.title": "Мікрофон телефона",
+      "s.phoneMic.enable": "Використовувати мікрофон телефона як мікрофон комп'ютера",
+      "s.phoneMic.hint": "Звук з мікрофона телефона відтворюється у віртуальний кабель, наприклад VB-CABLE; застосунки вибирають інший кінець кабелю (CABLE Output) як мікрофон. «Налаштувати» перевіряє кабель, завантажує scrcpy-server 5.0.1 з GitHub, якщо його немає, і вмикає мікрофон. Телефон має бути під'єднаний через USB. Інші параметри: Додатково › JSON (phoneMic).",
+      "s.phoneMic.setup": "Налаштувати",
+      "s.phoneMic.settingUp": "Налаштування…",
+      "s.phoneMic.saveFirst": "Спершу збережіть або скасуйте інші зміни, потім натисніть «Налаштувати».",
+      "s.phoneMic.setupFailed": "Не вдалося зв'язатися з агентом.",
+      "s.phoneMic.startMuted": "Запускати без звуку",
+      "s.phoneMic.toggle": "Вимкнути / увімкнути звук",
+      "s.phoneMic.muteNote": "Вимкнення звуку глушить мікрофон лише на цьому комп'ютері; поки мікрофон телефона ввімкнено, телефон продовжує запис. Вимкніть його, щоб зупинити запис.",
+      "s.phoneMic.reconnects": "перепідключень: {n}, останнє за {ms} мс",
       "s.feeds.import": "+ Імпорт стрічок (OPML / списком)",
       "s.feeds.importTitle": "Імпорт стрічок RSS / Atom",
       "s.feeds.importHint": "Імпортуйте стрічки з категоріями з файлу експорту OPML (Feedly, Inoreader, NetNewsWire тощо) або вставте рядки (Категорія | Назва | URL чи Назва | URL).",
@@ -1070,6 +1081,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "Вбудований: вимкнути монітори",
       "Built-in: turn monitors off (X11)": "Вбудований: вимкнути монітори (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "Вбудований: пробудження комп' ютера (Wake- on- LAN; аргументи: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "Вбудований: вимкнути / увімкнути звук мікрофона телефона (аргументи: mute або unmute, щоб задати)",
       "CI fails on my pull request": "CI зазнала невдачі під час виконання мого запиту на витяг",
       "CPU": "CPU",
       "CPU load": "Завантаження CPU",

@@ -31,7 +31,7 @@ public static class Shortcuts
         var on = State(sc, push, audio) ?? false;
         var target = on && sc.OffCmd is not null ? new Shortcut { Label = sc.Label, Cmd = sc.OffCmd, Args = sc.OffArgs, Cwd = sc.Cwd } : sc;
         var err = Execute(target, log, cfg, depth, push, audio);
-        if (err is null && sc.StateKey is null && sc.Cmd != "builtin:mute") Remembered[sc.Id] = !on;
+        if (err is null && sc.StateKey is null && sc.Cmd is not ("builtin:mute" or PhoneDevices.MicCmd)) Remembered[sc.Id] = !on;
         return err;
     }
 
@@ -39,7 +39,7 @@ public static class Shortcuts
     public static Dictionary<string, bool>? States(AgentConfig cfg, PushStore push, AudioControl audio)
     {
         Dictionary<string, bool>? map = null;
-        foreach (var sc in cfg.Shortcuts.Where(s => s.Toggle || s.Cmd == "builtin:mute"))
+        foreach (var sc in cfg.Shortcuts.Where(s => s.Toggle || s.Cmd is "builtin:mute" or PhoneDevices.MicCmd))
             if (State(sc, push, audio) is { } on) (map ??= [])[sc.Id] = on;
         return map;
     }
@@ -47,6 +47,8 @@ public static class Shortcuts
     public static bool? State(Shortcut sc, PushStore? push, AudioControl? audio)
     {
         if (sc.Cmd == "builtin:mute" && sc.StateKey is null) return audio?.Snapshot()?.Muted;
+        // the phone mic key is lit while the mic is live and not muted
+        if (sc.Cmd == PhoneDevices.MicCmd && sc.StateKey is null) return PhoneDevices.MicOn;
         if (sc.StateKey is not null) return PushIsOn(push, sc.StateKey);
         return Remembered.TryGetValue(sc.Id, out var r) && r;
     }
@@ -256,6 +258,9 @@ public static class Shortcuts
                 case "builtin:wake":
                     // "packets sent", never "the machine is up"
                     if (WakeOnLan.Wake(sc.Args) is { } wakeError) throw new InvalidOperationException(wakeError);
+                    break;
+                case PhoneDevices.MicCmd:
+                    PhoneDevices.Run(sc.Cmd, sc.Args);
                     break;
 #if WINDOWS
                 case "builtin:lock":

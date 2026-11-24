@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "hi": {
     "strings": {
+      "s.phoneMic.title": "फ़ोन माइक",
+      "s.phoneMic.enable": "फ़ोन के माइक्रोफ़ोन को कंप्यूटर के माइक्रोफ़ोन की तरह इस्तेमाल करें",
+      "s.phoneMic.hint": "फ़ोन के माइक की आवाज़ VB-CABLE जैसी वर्चुअल केबल में चलाई जाती है; ऐप केबल के दूसरे सिरे (CABLE Output) को माइक्रोफ़ोन चुनते हैं। सेट अप केबल की जाँच करता है, scrcpy-server 5.0.1 न हो तो उसे GitHub से डाउनलोड करता है और माइक चालू करता है। फ़ोन USB से जुड़ा होना चाहिए। और विकल्प: उन्नत › JSON (phoneMic)।",
+      "s.phoneMic.setup": "सेट अप करें",
+      "s.phoneMic.settingUp": "सेट अप हो रहा है…",
+      "s.phoneMic.saveFirst": "पहले अपने दूसरे बदलाव सहेजें या वापस लें, फिर सेट अप दबाएँ।",
+      "s.phoneMic.setupFailed": "एजेंट से संपर्क नहीं हो सका।",
+      "s.phoneMic.startMuted": "म्यूट करके शुरू करें",
+      "s.phoneMic.toggle": "म्यूट / अनम्यूट",
+      "s.phoneMic.muteNote": "म्यूट सिर्फ़ इस कंप्यूटर पर माइक को चुप करता है; जब तक फ़ोन माइक चालू है, फ़ोन रिकॉर्ड करता रहता है। रिकॉर्डिंग रोकने के लिए इसे बंद करें।",
+      "s.phoneMic.reconnects": "{n} बार फिर से जुड़ा, पिछली बार {ms} ms में",
       "s.feeds.import": "+ फ़ीड आयात करें (OPML / एक साथ)",
       "s.feeds.importTitle": "RSS / Atom फ़ीड आयात करें",
       "s.feeds.importHint": "OPML एक्सपोर्ट फ़ाइल (Feedly, Inoreader, NetNewsWire आदि) से श्रेणियों वाली फ़ीड आयात करें या पंक्तियाँ चिपकाएँ (श्रेणी | नाम | URL, या नाम | URL)।",
@@ -1070,6 +1081,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "अंतर्निर्मित: मॉनीटर बन्द करें",
       "Built-in: turn monitors off (X11)": "अंतर्निर्मित: मॉनीटर बन्द करें (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "अंतर्निर्मित: कम्प्यूटर को जागाएं (Wake- on- LAN; आर्गुमेंट्स: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "अंतर्निर्मित: फ़ोन माइक म्यूट / अनम्यूट (आर्ग्युमेंट: तय करने के लिए mute या unmute)",
       "CI fails on my pull request": "CI मेरे खींचें अनुरोध पर असफल",
       "CPU": "CPU",
       "CPU load": "CPU लोड",

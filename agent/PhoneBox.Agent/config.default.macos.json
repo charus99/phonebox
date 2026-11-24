@@ -32,6 +32,10 @@
   "opencode": { "phoneApprovals": false, "sessions": false, "timeoutSec": 90, "alwaysCountdownSec": 10, "watchWsl": false, "shareSessionTitles": false },
   // App console widget (Windows): keys and dial bindings per app, matched by the focused window's process name
   "console": { "profiles": [] },
+  // Phone mic (Windows, off by default): the phone's microphone played into a virtual cable ("endpoint", e.g. VB-CABLE's CABLE Input),
+  // so apps pick the cable's other end as their microphone. Settings › General › Phone mic › Set up turns it on and fetches
+  // scrcpy-server 5.0.1 from GitHub if it is missing ("serverPath": null = the copy next to this file)
+  "phoneMic": { "enabled": false, "source": "mic-camcorder", "endpoint": "CABLE Input", "latencyMs": 50, "maxBufferMs": 150, "gain": 1, "serverPath": null, "startMuted": false },
   // Steam friends widget: enter your SteamID64 and a user Web API key in Settings › General (see docs/STEAM.md)
   "steam": { "enabled": false, "steamId": null, "apiKey": null },
 

@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "ja": {
     "strings": {
+      "s.phoneMic.title": "スマホのマイク",
+      "s.phoneMic.enable": "スマホのマイクをパソコンのマイクとして使う",
+      "s.phoneMic.hint": "スマホのマイクの音は VB-CABLE などの仮想ケーブルに再生され、アプリはケーブルのもう一方の端(CABLE Output)をマイクとして選びます。「セットアップ」はケーブルを確認し、scrcpy-server 5.0.1 がなければ GitHub からダウンロードしてマイクをオンにします。スマホは USB で接続しておく必要があります。その他の設定: 詳細 › JSON(phoneMic)。",
+      "s.phoneMic.setup": "セットアップ",
+      "s.phoneMic.settingUp": "セットアップ中…",
+      "s.phoneMic.saveFirst": "先にほかの変更を保存するか元に戻してから、セットアップを押してください。",
+      "s.phoneMic.setupFailed": "エージェントに接続できませんでした。",
+      "s.phoneMic.startMuted": "ミュートで開始",
+      "s.phoneMic.toggle": "ミュート / 解除",
+      "s.phoneMic.muteNote": "ミュートはこのパソコン上でマイクを無音にするだけです。スマホのマイクがオンの間、スマホは録音を続けます。録音を止めるにはオフにしてください。",
+      "s.phoneMic.reconnects": "{n} 回再接続、直近は {ms} ms",
       "s.feeds.import": "+ フィードをインポート（OPML / 一括）",
       "s.feeds.importTitle": "RSS / Atom フィードのインポート",
       "s.feeds.importHint": "OPML エクスポートファイル（Feedly、Inoreader、NetNewsWire など）からカテゴリ付きのフィードをインポートするか、行を貼り付けます（カテゴリ | 名前 | URL、または 名前 | URL）。",
@@ -1070,6 +1081,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "内蔵: モニタをオフにする",
       "Built-in: turn monitors off (X11)": "内蔵: モニタをオフにする (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "内蔵:コンピュータを起動 (Wake-on-LAN; 論理: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "内蔵: スマホのマイクをミュート / 解除(引数: mute または unmute で指定)",
       "CI fails on my pull request": "CI は私のプル要求に失敗しました",
       "CPU": "CPU",
       "CPU load": "CPU 負荷",

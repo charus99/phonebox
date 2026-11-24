@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "id": {
     "strings": {
+      "s.phoneMic.title": "Mikrofon ponsel",
+      "s.phoneMic.enable": "Gunakan mikrofon ponsel sebagai mikrofon komputer",
+      "s.phoneMic.hint": "Mikrofon ponsel diputar ke kabel virtual seperti VB-CABLE; aplikasi memilih ujung kabel yang lain (CABLE Output) sebagai mikrofon. Siapkan memeriksa kabel, mengunduh scrcpy-server 5.0.1 dari GitHub jika belum ada, lalu menyalakan mikrofon. Ponsel harus terhubung lewat USB. Opsi lain: Lanjutan › JSON (phoneMic).",
+      "s.phoneMic.setup": "Siapkan",
+      "s.phoneMic.settingUp": "Menyiapkan…",
+      "s.phoneMic.saveFirst": "Simpan atau batalkan dulu perubahan lain, lalu tekan Siapkan.",
+      "s.phoneMic.setupFailed": "Agen tidak dapat dihubungi.",
+      "s.phoneMic.startMuted": "Mulai dalam keadaan bisu",
+      "s.phoneMic.toggle": "Bisukan / bunyikan",
+      "s.phoneMic.muteNote": "Membisukan hanya membungkam mikrofon di komputer ini; selama mikrofon ponsel menyala, ponsel tetap merekam. Matikan untuk berhenti merekam.",
+      "s.phoneMic.reconnects": "tersambung ulang {n}×, terakhir dalam {ms} ms",
       "s.feeds.import": "+ Impor feed (OPML / sekaligus)",
       "s.feeds.importTitle": "Impor feed RSS / Atom",
       "s.feeds.importHint": "Impor feed berkategori dari file ekspor OPML (Feedly, Inoreader, NetNewsWire, dll.) atau tempel baris teks (Kategori | Nama | URL, atau Nama | URL).",
@@ -1070,6 +1081,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "Tertanam: matikan monitor",
       "Built-in: turn monitors off (X11)": "Tertanam: matikan monitor (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "Tertanam: bangunkan komputer (Wake- on- LAN; argumen: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "Bawaan: bisukan / bunyikan mikrofon ponsel (argumen: mute atau unmute untuk menetapkan)",
       "CI fails on my pull request": "CI gagal pada permintaan pull saya",
       "CPU": "CPU",
       "CPU load": "CPU load",

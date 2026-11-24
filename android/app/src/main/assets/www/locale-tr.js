@@ -506,6 +506,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "İçerik: monitörleri kapatın",
       "Built-in: turn monitors off (X11)": "İçerik: monitörleri kapatın (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "İçe döşenmiş: bir bilgisayarı uyandır (Wake- on- LAN; argümanlar: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "Yerleşik: telefon mikrofonunu sessize al / sesini aç (argüman: ayarlamak için mute veya unmute)",
       "CI fails on my pull request": "CI çekim talebimde başarısız oldu",
       "CPU": "CPU",
       "CPU load": "CPU yükle",

@@ -104,9 +104,15 @@ builder.Services.AddSingleton(sp => new LyricsService(sp.GetRequiredService<Conf
 AddMonitor<BatteryMonitor>(builder.Services);
 AddMonitor<RuleEngine>(builder.Services);
 AddMonitor<ChargeGuard>(builder.Services);
+// the phone's microphone into a virtual cable (off by default)
+AddMonitor<PhoneMic>(builder.Services);
 builder.Services.AddHostedService<Tray>();
 
 var app = builder.Build();
+{
+    // the phone acts on it through a shortcut command and reads it in /api/state (see PhoneDevices)
+    PhoneDevices.Mic = app.Services.GetRequiredService<PhoneMic>();
+}
 
 app.MapGet("/api/controls/state", async (ControlDeck deck, CancellationToken ct) => Results.Json(await deck.Snapshot(ct)));
 app.MapPost("/api/controls/command/{kind}", async (string kind, string? id, string? op, int? value, bool? muted,
@@ -525,6 +531,21 @@ app.MapGet("/api/info", (AdbReverse adb, ConfigStore cfg) => Results.Json(new
     webviewProblem = WebViewDoctor.DiagnoseRecent(PhoneRegistry.All(), DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()),
 }));
 
+// Phone mic status for the settings page and scripts (local port only: not a phone path, see Lan.AllowedOverLan).
+app.MapGet("/api/phone-mic", (PhoneMic mic) => Results.Json(new { mic = mic.Snapshot() }));
+app.MapPost("/api/phone-mic/mute", (bool? muted, PhoneMic mic) =>
+{
+    if (muted is null) mic.Toggle(); else mic.SetMuted(muted.Value);
+    return Results.Json(new { muted = mic.Muted });
+});
+// Set up: the only way the mic starts (the user presses it in the settings page; local port only).
+app.MapPost("/api/phone-mic/setup", async (ConfigStore cfg, CancellationToken ct) =>
+{
+    if (!OperatingSystem.IsWindows()) return Results.Json(new PhoneDeviceSetup.Result(false, "The phone mic needs Windows."));
+    using var http = new HttpClient { Timeout = TimeSpan.FromMinutes(1) };
+    var r = await PhoneDeviceSetup.SetupMicAsync(cfg, PhoneDeviceSetup.PlaybackDevices, (url, t) => PhoneDeviceSetup.DownloadAsync(http, url, t), ct);
+    return Results.Json(r);
+});
 app.MapPost("/api/phone/open", async (AdbReverse adb) => { await adb.OpenPanelAsync(); return Results.Ok(); });
 
 // Widget types and page templates for the settings page's layout editor.
@@ -594,6 +615,7 @@ object State(IServiceProvider sp, long? ev)
         obs = sp.GetRequiredService<ObsMonitor>().Snapshot() is { Connected: true } o ? new { o.Streaming, o.Recording, o.RecordPaused } : null,
         toggles = Shortcuts.States(sp.GetRequiredService<ConfigStore>().Get(), push, sp.GetRequiredService<AudioControl>()),
         cycles = Shortcuts.CycleStates(sp.GetRequiredService<ConfigStore>().Get()),
+        phoneMic = sp.GetRequiredService<PhoneMic>().PhoneState(),
     };
 }
 
@@ -1288,4 +1310,3 @@ public partial class Program
             ? KeySender.AccessibilityHint
             : "The shortcut failed. The agent log on the computer has the details.";
 }
-

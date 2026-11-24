@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "ar": {
     "strings": {
+      "s.phoneMic.title": "ميكروفون الهاتف",
+      "s.phoneMic.enable": "استخدام ميكروفون الهاتف كميكروفون للحاسوب",
+      "s.phoneMic.hint": "يُشغَّل صوت ميكروفون الهاتف في كابل افتراضي مثل VB-CABLE، وتختار التطبيقات الطرف الآخر من الكابل (CABLE Output) ميكروفونًا لها. يتحقق «الإعداد» من وجود الكابل، وينزّل scrcpy-server 5.0.1 من GitHub إن لم يكن موجودًا، ثم يشغّل الميكروفون. يجب توصيل الهاتف عبر USB. خيارات أخرى: متقدم › JSON (phoneMic).",
+      "s.phoneMic.setup": "إعداد",
+      "s.phoneMic.settingUp": "جارٍ الإعداد…",
+      "s.phoneMic.saveFirst": "احفظ تغييراتك الأخرى أو تراجع عنها أولًا، ثم اضغط «إعداد».",
+      "s.phoneMic.setupFailed": "تعذّر الوصول إلى الوكيل.",
+      "s.phoneMic.startMuted": "البدء مكتوم الصوت",
+      "s.phoneMic.toggle": "كتم / إلغاء الكتم",
+      "s.phoneMic.muteNote": "الكتم يُسكت الميكروفون على هذا الحاسوب فقط؛ ما دام ميكروفون الهاتف مفعّلًا يواصل الهاتف التسجيل. أوقفه لإيقاف التسجيل.",
+      "s.phoneMic.reconnects": "أُعيد الاتصال {n} مرة، آخرها خلال {ms} مللي ثانية",
       "s.feeds.import": "+ استيراد الخلاصات (OPML / دفعة واحدة)",
       "s.feeds.importTitle": "استيراد خلاصات RSS / Atom",
       "s.feeds.importHint": "استورد خلاصات مصنفة من ملف تصدير OPML (Feedly وInoreader وNetNewsWire وغيرها) أو الصق أسطرًا (الفئة | الاسم | URL، أو الاسم | URL).",
@@ -1104,6 +1115,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "مدمجة: إطفاء الشاشات",
       "Built-in: turn monitors off (X11)": "مدمجة: إطفاء الشاشات (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "داخلي: إيقاظ الحاسوب (Wake-on- LAN؛ args: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "مدمج: كتم / إلغاء كتم ميكروفون الهاتف (المعاملات: mute أو unmute لتحديده)",
       "CI fails on my pull request": "CI فشلت في طلبي للسحب",
       "CPU": "المعالج",
       "CPU load": "CPU الحمل",

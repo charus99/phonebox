@@ -2,6 +2,17 @@
 window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
   "zh-Hant": {
     "strings": {
+      "s.phoneMic.title": "手機麥克風",
+      "s.phoneMic.enable": "將手機的麥克風當作電腦麥克風使用",
+      "s.phoneMic.hint": "手機麥克風的聲音會播放到虛擬音訊線(例如 VB-CABLE);應用程式選擇音訊線的另一端(CABLE Output)作為麥克風。「設定」會檢查音訊線,若缺少則從 GitHub 下載 scrcpy-server 5.0.1,然後開啟麥克風。手機須透過 USB 連接。更多選項:進階 › JSON(phoneMic)。",
+      "s.phoneMic.setup": "設定",
+      "s.phoneMic.settingUp": "正在設定…",
+      "s.phoneMic.saveFirst": "請先儲存或還原其他變更,再按「設定」。",
+      "s.phoneMic.setupFailed": "無法連線到代理程式。",
+      "s.phoneMic.startMuted": "啟動時靜音",
+      "s.phoneMic.toggle": "靜音 / 取消靜音",
+      "s.phoneMic.muteNote": "靜音只會讓這台電腦上的麥克風無聲;只要手機麥克風開著,手機仍在錄音。關閉它才能停止錄音。",
+      "s.phoneMic.reconnects": "已重新連線 {n} 次,最近一次耗時 {ms} 毫秒",
       "s.feeds.import": "+ 匯入訂閱來源（OPML / 批次）",
       "s.feeds.importTitle": "匯入 RSS / Atom 訂閱來源",
       "s.feeds.importHint": "從 OPML 匯出檔（Feedly、Inoreader、NetNewsWire 等）匯入帶分類的訂閱來源，或貼上文字行（分類 | 名稱 | URL，或 名稱 | URL）。",
@@ -1070,6 +1081,7 @@ window.PhoneBoxLocaleData = Object.assign(window.PhoneBoxLocaleData || {}, {
       "Built-in: turn monitors off": "內建 ： 關閉顯示器",
       "Built-in: turn monitors off (X11)": "內建:關閉顯示器 (X11)",
       "Built-in: wake a computer (Wake-on-LAN; args: MAC)": "內建: 喚醒電腦 (Wake-on- LAN; arguments: MAC)",
+      "Built-in: phone mic mute / unmute (args: mute or unmute to set it)": "內建:手機麥克風靜音 / 取消靜音(參數:mute 或 unmute 可直接設定)",
       "CI fails on my pull request": "CI 失敗了我的拉取請求",
       "CPU": "CPU",
       "CPU load": "CPU 載入",

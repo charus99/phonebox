@@ -34,6 +34,17 @@
 
   const STRINGS = {
     en: {
+      's.phoneMic.title': 'Phone mic',
+      's.phoneMic.enable': 'Use the phone\'s microphone as a computer microphone',
+      's.phoneMic.hint': 'The phone\'s mic plays into a virtual cable such as VB-CABLE; apps pick the cable\'s other end (CABLE Output) as their microphone. Set up checks for the cable, downloads scrcpy-server 5.0.1 from GitHub if it is missing, and turns the mic on. The phone must be on USB. More options: Advanced › JSON (phoneMic).',
+      's.phoneMic.setup': 'Set up',
+      's.phoneMic.settingUp': 'Setting up…',
+      's.phoneMic.saveFirst': 'Save or revert your other changes first, then press Set up.',
+      's.phoneMic.setupFailed': 'Could not reach the agent.',
+      's.phoneMic.startMuted': 'Start muted',
+      's.phoneMic.toggle': 'Mute / unmute',
+      's.phoneMic.muteNote': 'Mute only silences the mic on this computer; while the phone mic is on, the phone keeps recording. Turn it off to stop recording.',
+      's.phoneMic.reconnects': 'reconnected {n}×, last in {ms} ms',
       // Language selector
       'lang.auto': 'Follow system',
       'lang.label': 'Language',
@@ -983,6 +994,17 @@
     },
 
     tr: {
+      's.phoneMic.title': 'Telefon mikrofonu',
+      's.phoneMic.enable': 'Telefonun mikrofonunu bilgisayar mikrofonu olarak kullan',
+      's.phoneMic.hint': 'Telefonun mikrofonu VB-CABLE gibi sanal bir kabloya çalınır; uygulamalar kablonun diğer ucunu (CABLE Output) mikrofon olarak seçer. Kur, kabloyu denetler, eksikse scrcpy-server 5.0.1\'i GitHub\'dan indirir ve mikrofonu açar. Telefon USB ile bağlı olmalı. Diğer seçenekler: Gelişmiş › JSON (phoneMic).',
+      's.phoneMic.setup': 'Kur',
+      's.phoneMic.settingUp': 'Kuruluyor…',
+      's.phoneMic.saveFirst': 'Önce diğer değişikliklerinizi kaydedin ya da geri alın, sonra Kur\'a basın.',
+      's.phoneMic.setupFailed': 'Ajana ulaşılamadı.',
+      's.phoneMic.startMuted': 'Sessizde başlat',
+      's.phoneMic.toggle': 'Sesi kapat / aç',
+      's.phoneMic.muteNote': 'Sessize almak mikrofonu yalnızca bu bilgisayarda susturur; telefon mikrofonu açıkken telefon kayda devam eder. Kaydı durdurmak için mikrofonu kapatın.',
+      's.phoneMic.reconnects': '{n} kez yeniden bağlandı, sonuncusu {ms} ms',
       'lang.auto': 'Sistem dilini izle',
       'lang.label': 'Dil',
 
@@ -1527,6 +1549,17 @@
     },
 
     de: {
+      's.phoneMic.title': 'Telefonmikrofon',
+      's.phoneMic.enable': 'Das Mikrofon des Telefons als Computermikrofon verwenden',
+      's.phoneMic.hint': 'Das Mikrofon des Telefons wird in ein virtuelles Kabel wie VB-CABLE abgespielt; Apps wählen das andere Ende des Kabels (CABLE Output) als Mikrofon. Einrichten prüft das Kabel, lädt scrcpy-server 5.0.1 von GitHub, falls er fehlt, und schaltet das Mikrofon ein. Das Telefon muss per USB verbunden sein. Weitere Optionen: Erweitert › JSON (phoneMic).',
+      's.phoneMic.setup': 'Einrichten',
+      's.phoneMic.settingUp': 'Wird eingerichtet…',
+      's.phoneMic.saveFirst': 'Speichern oder verwerfen Sie zuerst Ihre anderen Änderungen und drücken Sie dann Einrichten.',
+      's.phoneMic.setupFailed': 'Der Agent ist nicht erreichbar.',
+      's.phoneMic.startMuted': 'Stumm starten',
+      's.phoneMic.toggle': 'Stumm / laut',
+      's.phoneMic.muteNote': 'Stummschalten schaltet das Mikrofon nur auf diesem Computer stumm; solange das Telefonmikrofon an ist, nimmt das Telefon weiter auf. Schalten Sie es aus, um die Aufnahme zu beenden.',
+      's.phoneMic.reconnects': '{n}× neu verbunden, zuletzt in {ms} ms',
       'lang.auto': 'Systemsprache',
       'lang.label': 'Sprache',
 
@@ -2062,6 +2095,17 @@
     },
 
     fr: {
+      's.phoneMic.title': 'Micro du téléphone',
+      's.phoneMic.enable': 'Utiliser le micro du téléphone comme micro de l\'ordinateur',
+      's.phoneMic.hint': 'Le micro du téléphone est joué dans un câble virtuel comme VB-CABLE ; les applications choisissent l\'autre extrémité du câble (CABLE Output) comme micro. Configurer vérifie le câble, télécharge scrcpy-server 5.0.1 depuis GitHub s\'il manque et active le micro. Le téléphone doit être branché en USB. Autres options : Avancé › JSON (phoneMic).',
+      's.phoneMic.setup': 'Configurer',
+      's.phoneMic.settingUp': 'Configuration…',
+      's.phoneMic.saveFirst': 'Enregistrez ou annulez d\'abord vos autres modifications, puis appuyez sur Configurer.',
+      's.phoneMic.setupFailed': 'Impossible de joindre l\'agent.',
+      's.phoneMic.startMuted': 'Démarrer en sourdine',
+      's.phoneMic.toggle': 'Couper / rétablir le son',
+      's.phoneMic.muteNote': 'La sourdine coupe le micro seulement sur cet ordinateur ; tant que le micro du téléphone est activé, le téléphone continue d\'enregistrer. Désactivez-le pour arrêter l\'enregistrement.',
+      's.phoneMic.reconnects': 'reconnecté {n}×, la dernière en {ms} ms',
       'lang.auto': 'Langue du système',
       'lang.label': 'Langue',
 
@@ -2597,6 +2641,17 @@
     },
 
     es: {
+      's.phoneMic.title': 'Micrófono del teléfono',
+      's.phoneMic.enable': 'Usar el micrófono del teléfono como micrófono del ordenador',
+      's.phoneMic.hint': 'El micrófono del teléfono se reproduce en un cable virtual como VB-CABLE; las aplicaciones eligen el otro extremo del cable (CABLE Output) como micrófono. Configurar comprueba el cable, descarga scrcpy-server 5.0.1 de GitHub si falta y activa el micrófono. El teléfono debe estar conectado por USB. Más opciones: Avanzado › JSON (phoneMic).',
+      's.phoneMic.setup': 'Configurar',
+      's.phoneMic.settingUp': 'Configurando…',
+      's.phoneMic.saveFirst': 'Guarda o revierte primero tus otros cambios y luego pulsa Configurar.',
+      's.phoneMic.setupFailed': 'No se pudo contactar con el agente.',
+      's.phoneMic.startMuted': 'Empezar silenciado',
+      's.phoneMic.toggle': 'Silenciar / activar',
+      's.phoneMic.muteNote': 'Silenciar solo calla el micrófono en este ordenador; mientras el micrófono del teléfono esté activado, el teléfono sigue grabando. Desactívalo para dejar de grabar.',
+      's.phoneMic.reconnects': 'reconectado {n}×, la última en {ms} ms',
       'lang.auto': 'Seguir sistema',
       'lang.label': 'Idioma',
 
@@ -3132,6 +3187,17 @@
     },
 
     it: {
+      's.phoneMic.title': 'Microfono del telefono',
+      's.phoneMic.enable': 'Usa il microfono del telefono come microfono del computer',
+      's.phoneMic.hint': 'Il microfono del telefono viene riprodotto in un cavo virtuale come VB-CABLE; le app scelgono l\'altra estremità del cavo (CABLE Output) come microfono. Configura controlla il cavo, scarica scrcpy-server 5.0.1 da GitHub se manca e attiva il microfono. Il telefono deve essere collegato via USB. Altre opzioni: Avanzate › JSON (phoneMic).',
+      's.phoneMic.setup': 'Configura',
+      's.phoneMic.settingUp': 'Configurazione…',
+      's.phoneMic.saveFirst': 'Salva o annulla prima le altre modifiche, poi premi Configura.',
+      's.phoneMic.setupFailed': 'Impossibile raggiungere l\'agente.',
+      's.phoneMic.startMuted': 'Avvia disattivato',
+      's.phoneMic.toggle': 'Disattiva / attiva audio',
+      's.phoneMic.muteNote': 'Disattivare l\'audio silenzia il microfono solo su questo computer; finché il microfono del telefono è attivo, il telefono continua a registrare. Disattivalo per smettere di registrare.',
+      's.phoneMic.reconnects': 'riconnesso {n}×, l\'ultima in {ms} ms',
       'lang.auto': 'Lingua di sistema',
       'lang.label': 'Lingua',
 
@@ -3667,6 +3733,17 @@
     },
 
     pt: {
+      's.phoneMic.title': 'Microfone do telemóvel',
+      's.phoneMic.enable': 'Usar o microfone do telemóvel como microfone do computador',
+      's.phoneMic.hint': 'O microfone do telemóvel é reproduzido num cabo virtual como o VB-CABLE; as aplicações escolhem a outra ponta do cabo (CABLE Output) como microfone. Configurar verifica o cabo, transfere o scrcpy-server 5.0.1 do GitHub se faltar e liga o microfone. O telemóvel tem de estar ligado por USB. Mais opções: Avançado › JSON (phoneMic).',
+      's.phoneMic.setup': 'Configurar',
+      's.phoneMic.settingUp': 'A configurar…',
+      's.phoneMic.saveFirst': 'Guarde ou reverta primeiro as outras alterações e depois carregue em Configurar.',
+      's.phoneMic.setupFailed': 'Não foi possível contactar o agente.',
+      's.phoneMic.startMuted': 'Iniciar sem som',
+      's.phoneMic.toggle': 'Silenciar / ativar som',
+      's.phoneMic.muteNote': 'Silenciar só cala o microfone neste computador; enquanto o microfone do telemóvel estiver ligado, o telemóvel continua a gravar. Desligue-o para parar de gravar.',
+      's.phoneMic.reconnects': 'voltou a ligar {n}×, a última em {ms} ms',
       'lang.auto': 'Seguir sistema',
       'lang.label': 'Idioma',
 
@@ -4202,6 +4279,17 @@
     },
 
     'pt-BR': {
+      's.phoneMic.title': 'Microfone do celular',
+      's.phoneMic.enable': 'Usar o microfone do celular como microfone do computador',
+      's.phoneMic.hint': 'O microfone do celular toca em um cabo virtual como o VB-CABLE; os apps escolhem a outra ponta do cabo (CABLE Output) como microfone. Configurar verifica o cabo, baixa o scrcpy-server 5.0.1 do GitHub se estiver faltando e liga o microfone. O celular precisa estar no USB. Mais opções: Avançado › JSON (phoneMic).',
+      's.phoneMic.setup': 'Configurar',
+      's.phoneMic.settingUp': 'Configurando…',
+      's.phoneMic.saveFirst': 'Salve ou desfaça antes suas outras alterações e depois toque em Configurar.',
+      's.phoneMic.setupFailed': 'Não foi possível falar com o agente.',
+      's.phoneMic.startMuted': 'Iniciar sem som',
+      's.phoneMic.toggle': 'Silenciar / ativar som',
+      's.phoneMic.muteNote': 'Silenciar só cala o microfone neste computador; enquanto o microfone do celular estiver ligado, o celular continua gravando. Desligue-o para parar de gravar.',
+      's.phoneMic.reconnects': 'reconectou {n}×, a última em {ms} ms',
       'lang.auto': 'Seguir sistema',
       'lang.label': 'Idioma',
       'panel.allPages': 'Todas as páginas',
@@ -5165,6 +5253,17 @@
     },
 
     nl: {
+      's.phoneMic.title': 'Telefoonmicrofoon',
+      's.phoneMic.enable': 'De microfoon van de telefoon als computermicrofoon gebruiken',
+      's.phoneMic.hint': 'De microfoon van de telefoon speelt af in een virtuele kabel zoals VB-CABLE; apps kiezen het andere eind van de kabel (CABLE Output) als microfoon. Instellen controleert de kabel, downloadt scrcpy-server 5.0.1 van GitHub als die ontbreekt en zet de microfoon aan. De telefoon moet via USB verbonden zijn. Meer opties: Geavanceerd › JSON (phoneMic).',
+      's.phoneMic.setup': 'Instellen',
+      's.phoneMic.settingUp': 'Bezig met instellen…',
+      's.phoneMic.saveFirst': 'Sla eerst je andere wijzigingen op of draai ze terug en druk dan op Instellen.',
+      's.phoneMic.setupFailed': 'De agent is niet bereikbaar.',
+      's.phoneMic.startMuted': 'Gedempt starten',
+      's.phoneMic.toggle': 'Dempen / aanzetten',
+      's.phoneMic.muteNote': 'Dempen zet de microfoon alleen op deze computer stil; zolang de telefoonmicrofoon aan staat, blijft de telefoon opnemen. Zet hem uit om het opnemen te stoppen.',
+      's.phoneMic.reconnects': '{n}× opnieuw verbonden, laatst in {ms} ms',
       'lang.auto': 'Systeemtaal',
       'lang.label': 'Taal',
 
@@ -5700,6 +5799,17 @@
     },
 
     pl: {
+      's.phoneMic.title': 'Mikrofon telefonu',
+      's.phoneMic.enable': 'Używaj mikrofonu telefonu jako mikrofonu komputera',
+      's.phoneMic.hint': 'Mikrofon telefonu jest odtwarzany do wirtualnego kabla, takiego jak VB-CABLE; aplikacje wybierają drugi koniec kabla (CABLE Output) jako mikrofon. Konfiguruj sprawdza kabel, pobiera scrcpy-server 5.0.1 z GitHuba, jeśli go brakuje, i włącza mikrofon. Telefon musi być podłączony przez USB. Więcej opcji: Zaawansowane › JSON (phoneMic).',
+      's.phoneMic.setup': 'Konfiguruj',
+      's.phoneMic.settingUp': 'Konfigurowanie…',
+      's.phoneMic.saveFirst': 'Najpierw zapisz lub cofnij pozostałe zmiany, a potem naciśnij Konfiguruj.',
+      's.phoneMic.setupFailed': 'Nie można połączyć się z agentem.',
+      's.phoneMic.startMuted': 'Uruchamiaj wyciszony',
+      's.phoneMic.toggle': 'Wycisz / włącz dźwięk',
+      's.phoneMic.muteNote': 'Wyciszenie wycisza mikrofon tylko na tym komputerze; dopóki mikrofon telefonu jest włączony, telefon nadal nagrywa. Wyłącz go, aby przestać nagrywać.',
+      's.phoneMic.reconnects': 'połączono ponownie {n}×, ostatnio w {ms} ms',
       'lang.auto': 'Język systemu',
       'lang.label': 'Język',
 
@@ -6235,6 +6345,17 @@
     },
 
     ru: {
+      's.phoneMic.title': 'Микрофон телефона',
+      's.phoneMic.enable': 'Использовать микрофон телефона как микрофон компьютера',
+      's.phoneMic.hint': 'Звук с микрофона телефона воспроизводится в виртуальный кабель, например VB-CABLE; приложения выбирают другой конец кабеля (CABLE Output) как микрофон. «Настроить» проверяет кабель, скачивает scrcpy-server 5.0.1 с GitHub, если его нет, и включает микрофон. Телефон должен быть подключён по USB. Другие параметры: Дополнительно › JSON (phoneMic).',
+      's.phoneMic.setup': 'Настроить',
+      's.phoneMic.settingUp': 'Настройка…',
+      's.phoneMic.saveFirst': 'Сначала сохраните или отмените другие изменения, затем нажмите «Настроить».',
+      's.phoneMic.setupFailed': 'Не удалось связаться с агентом.',
+      's.phoneMic.startMuted': 'Запускать без звука',
+      's.phoneMic.toggle': 'Выключить / включить звук',
+      's.phoneMic.muteNote': 'Выключение звука глушит микрофон только на этом компьютере; пока микрофон телефона включён, телефон продолжает запись. Выключите его, чтобы остановить запись.',
+      's.phoneMic.reconnects': 'переподключений: {n}, последнее за {ms} мс',
       'lang.auto': 'Язык системы',
       'lang.label': 'Язык',
 
@@ -6770,6 +6891,17 @@
     },
 
     el: {
+      's.phoneMic.title': 'Μικρόφωνο τηλεφώνου',
+      's.phoneMic.enable': 'Χρήση του μικροφώνου του τηλεφώνου ως μικρόφωνο του υπολογιστή',
+      's.phoneMic.hint': 'Το μικρόφωνο του τηλεφώνου αναπαράγεται σε ένα εικονικό καλώδιο όπως το VB-CABLE· οι εφαρμογές επιλέγουν την άλλη άκρη του καλωδίου (CABLE Output) ως μικρόφωνο. Η Ρύθμιση ελέγχει το καλώδιο, κατεβάζει το scrcpy-server 5.0.1 από το GitHub αν λείπει και ενεργοποιεί το μικρόφωνο. Το τηλέφωνο πρέπει να είναι συνδεδεμένο με USB. Περισσότερες επιλογές: Για προχωρημένους › JSON (phoneMic).',
+      's.phoneMic.setup': 'Ρύθμιση',
+      's.phoneMic.settingUp': 'Γίνεται ρύθμιση…',
+      's.phoneMic.saveFirst': 'Αποθηκεύστε ή αναιρέστε πρώτα τις άλλες αλλαγές σας και μετά πατήστε Ρύθμιση.',
+      's.phoneMic.setupFailed': 'Δεν ήταν δυνατή η επικοινωνία με τον agent.',
+      's.phoneMic.startMuted': 'Έναρξη σε σίγαση',
+      's.phoneMic.toggle': 'Σίγαση / κατάργηση σίγασης',
+      's.phoneMic.muteNote': 'Η σίγαση σιγεί το μικρόφωνο μόνο σε αυτόν τον υπολογιστή· όσο το μικρόφωνο του τηλεφώνου είναι ενεργό, το τηλέφωνο συνεχίζει να ηχογραφεί. Απενεργοποιήστε το για να σταματήσει η ηχογράφηση.',
+      's.phoneMic.reconnects': 'επανασυνδέθηκε {n}×, η τελευταία σε {ms} ms',
       'lang.auto': 'Όπως το σύστημα',
       'lang.label': 'Γλώσσα',
       'panel.allPages': 'Όλες οι σελίδες',
@@ -7732,6 +7864,17 @@
       's.opencode.shareSessionTitles': 'Εμφάνιση των τίτλων συνεδριών OpenCode στο τηλέφωνο (το OpenCode τους βγάζει από τη συνομιλία)',
     },
     vi: {
+      's.phoneMic.title': 'Mic điện thoại',
+      's.phoneMic.enable': 'Dùng micro của điện thoại làm micro cho máy tính',
+      's.phoneMic.hint': 'Tiếng từ mic điện thoại được phát vào một cáp ảo như VB-CABLE; các ứng dụng chọn đầu kia của cáp (CABLE Output) làm micro. Nút Cài đặt kiểm tra cáp ảo, tải scrcpy-server 5.0.1 từ GitHub nếu chưa có, rồi bật mic. Điện thoại phải cắm qua USB. Thêm tùy chọn: Nâng cao › JSON (phoneMic).',
+      's.phoneMic.setup': 'Cài đặt',
+      's.phoneMic.settingUp': 'Đang cài đặt…',
+      's.phoneMic.saveFirst': 'Hãy lưu hoặc hoàn tác các thay đổi khác trước, rồi bấm Cài đặt.',
+      's.phoneMic.setupFailed': 'Không kết nối được agent.',
+      's.phoneMic.startMuted': 'Khởi động ở chế độ tắt tiếng',
+      's.phoneMic.toggle': 'Tắt / bật tiếng',
+      's.phoneMic.muteNote': 'Tắt tiếng chỉ làm im lặng mic trên máy tính này; khi mic điện thoại còn bật, điện thoại vẫn tiếp tục thu âm. Hãy tắt mic để dừng thu âm.',
+      's.phoneMic.reconnects': 'đã nối lại {n} lần, lần gần nhất {ms} ms',
       'lang.auto': 'Theo hệ thống',
       'lang.label': 'Ngôn ngữ',
 
@@ -8671,6 +8814,17 @@
       's.wh.payloadHintFull': 'Payload JSON có thể mang <code>value</code>, <code>title</code>, <code>sub</code>, <code>unit</code>, <code>icon</code>, <code>color</code>, <code>level</code> (ok / warn / error), <code>progress</code> (0&ndash;1 hoặc 0&ndash;100), <code>items</code> (một danh sách) và <code>ttl</code> (giây). Văn bản thuần hoặc một con số cũng dùng được. Thông báo nhận <code>title</code>, <code>text</code>, <code>level</code>, <code>vibrate</code>, <code>seconds</code>, <code>wake</code> (làm sáng màn hình ban đêm) và <code>page</code> (chuyển sang trang đó).',
     },
     zh: {
+      's.phoneMic.title': '手机麦克风',
+      's.phoneMic.enable': '将手机的麦克风用作电脑麦克风',
+      's.phoneMic.hint': '手机麦克风的声音会播放到虚拟音频线(如 VB-CABLE)中;应用选择音频线的另一端(CABLE Output)作为麦克风。“设置”会检查音频线,如缺少则从 GitHub 下载 scrcpy-server 5.0.1,然后开启麦克风。手机须通过 USB 连接。更多选项:高级 › JSON(phoneMic)。',
+      's.phoneMic.setup': '设置',
+      's.phoneMic.settingUp': '正在设置…',
+      's.phoneMic.saveFirst': '请先保存或撤销其他更改,然后再点“设置”。',
+      's.phoneMic.setupFailed': '无法连接到代理。',
+      's.phoneMic.startMuted': '启动时静音',
+      's.phoneMic.toggle': '静音 / 取消静音',
+      's.phoneMic.muteNote': '静音只会让这台电脑上的麦克风无声;只要手机麦克风开着,手机仍在录音。关闭它才能停止录音。',
+      's.phoneMic.reconnects': '已重新连接 {n} 次,最近一次用时 {ms} 毫秒',
       'lang.auto': '跟随系统',
       'lang.label': '语言',
 
@@ -10212,6 +10366,7 @@
       'Built-in: lock the session': 'Ενσωματωμένο: κλείδωμα της συνεδρίας',
       'Built-in: lock the PC': 'Ενσωματωμένο: κλείδωμα του PC',
       'Built-in: wake a computer (Wake-on-LAN; args: MAC)': 'Ενσωματωμένο: ξύπνημα υπολογιστή (Wake-on-LAN· ορίσματα: MAC)',
+      'Built-in: phone mic mute / unmute (args: mute or unmute to set it)': 'Ενσωματωμένο: σίγαση / κατάργηση σίγασης μικροφώνου τηλεφώνου (ορίσματα: mute ή unmute για ρύθμιση)',
       'Built-in: sleep the display': 'Ενσωματωμένο: σβήσιμο της οθόνης',
       'Built-in: lock (sleeps the display)': 'Ενσωματωμένο: κλείδωμα (σβήνει την οθόνη)',
       'Open an app (args: -a "App Name") or a folder (args: path)': 'Άνοιγμα εφαρμογής (ορίσματα: -a "Όνομα εφαρμογής") ή φακέλου (ορίσματα: διαδρομή)',
@@ -10910,6 +11065,7 @@
       'Built-in: lock the session': 'Có sẵn: khóa phiên',
       'Built-in: lock the PC': 'Có sẵn: khóa máy tính',
       'Built-in: wake a computer (Wake-on-LAN; args: MAC)': 'Có sẵn: đánh thức một máy tính (Wake-on-LAN; tham số: MAC)',
+      'Built-in: phone mic mute / unmute (args: mute or unmute to set it)': 'Có sẵn: tắt / bật tiếng mic điện thoại (tham số: mute hoặc unmute để đặt)',
       'Built-in: sleep the display': 'Có sẵn: cho màn hình ngủ',
       'Built-in: lock (sleeps the display)': 'Có sẵn: khóa (cho màn hình ngủ)',
       'Open an app (args: -a "App Name") or a folder (args: path)': 'Mở ứng dụng (tham số: -a "Tên ứng dụng") hoặc thư mục (tham số: đường dẫn)',
@@ -11690,6 +11846,7 @@
       'Play a sound when a step ends': 'Tocar um som quando uma etapa terminar',
       'Sound volume (%)': 'Volume do som (%)',
       'Built-in: wake a computer (Wake-on-LAN; args: MAC)': 'Interno: acordar um computador (Wake-on-LAN; args: MAC)',
+      'Built-in: phone mic mute / unmute (args: mute or unmute to set it)': 'Interno: silenciar / ativar o microfone do celular (argumentos: mute ou unmute para definir)',
       "Control the PC cursor, tap to click, hold to drag, edge scroll bar, two fingers to right-click and scroll (Windows, Linux and macOS). On a Mac, three or four fingers swipe like its trackpad, and four or five spread or pinch.": 'Controla o cursor do PC: toque para clicar, segure para arrastar, barra de rolagem na borda, dois dedos para clique direito e rolar (Windows, Linux e macOS). No Mac, três ou quatro dedos deslizam como no trackpad dele, e quatro ou cinco dedos abrem ou fecham (pinça).',
       'Lights up while the microphone or camera is in use (Windows, Linux, macOS), OBS records or streams, or a pushed value is on.': 'Acende enquanto o microfone ou a câmera está em uso (Windows, Linux, macOS), o OBS grava ou transmite, ou um valor enviado está ativo.',
       'Haptic feedback': 'Feedback tátil',
