@@ -17,6 +17,10 @@
   [HugoDeLannoy5311](https://github.com/HugoDeLannoy5311)).
 
 **Agent**
+- Windows: the phone's microphone as a computer microphone, off by default. Settings › General › Phone mic › **Set up**
+  plays the phone's mic into a virtual audio cable (VB-CABLE), and apps such as Zoom, Teams or Discord pick the cable's
+  other end (*CABLE Output*) as their microphone. A shortcut mutes and unmutes it; muting silences it on the computer,
+  while the phone keeps recording until the mic is turned off (#465, #472, [VnQuynh810](https://github.com/VnQuynh810)).
 - Windows: Claude Code and Cursor running inside WSL can show like the native ones. **Also watch Claude Code in WSL**
   lists the Claude Code sessions of the running distros and uses the Claude sign-in there for the quota when Windows
   has none; **Also watch Cursor in WSL** lists the chats of projects opened over Remote - WSL. Both are off by default,
