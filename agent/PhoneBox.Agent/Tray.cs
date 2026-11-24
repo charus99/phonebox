@@ -151,3 +151,9 @@ public sealed class Tray : IHostedService
         }
     }
 }
+
+/// <summary>Windows has the tray icon above; the macOS menu bar icon lives in Unix/Tray.cs and Unix/MacMenuBar.cs.</summary>
+public static class MenuBarHost
+{
+    public static bool TryRun(WebApplication app, string[] args, AgentEndpoint endpoint, string configDir) => false;
+}

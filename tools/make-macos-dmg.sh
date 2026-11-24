@@ -8,8 +8,8 @@
 # sign-macos-agent action (the same certificate and identifier as the zip, so the designated requirement is the same as
 # the zip's and stays the same from release to release), scripts/build.sh signs ad hoc.
 #
-# There is no tray icon on macOS, so the app has no Dock icon or window (LSUIElement): it runs in the background and the
-# settings are at http://127.0.0.1:8765. The agent's identifier and the bundle identifier are the same on purpose.
+# The app has no Dock icon or window (LSUIElement): it lives in the menu bar (a phone icon with its menu) and the settings
+# are at http://127.0.0.1:8765. The agent's identifier and the bundle identifier are the same on purpose.
 set -euo pipefail
 
 usage() { sed -n '2,13p' "$0" >&2; exit 2; }

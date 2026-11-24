@@ -103,6 +103,13 @@ curl -fsSL https://raw.githubusercontent.com/ersinkoc/phonebox/main/setup.sh | b
   carries over to later updates. Before 0.9.22 the agent was signed ad hoc, and macOS dropped the permission with every
   update, so after updating from an older version allow it once more: remove PhoneBoxAgent there with *−* and add it
   again, even if it is listed and switched on ([#269](https://github.com/ersinkoc/phonebox/issues/269)).
+- **The macOS app lives in the menu bar.** Running as `PhoneBox.app` it has no Dock icon or window; a phone icon in the
+  menu bar shows whether the phone is connected and offers Open Settings, Check for Updates (and Install update when
+  there is one), Restart Agent, Show Log, Open Config Folder, Start at Login and Quit. Start at Login adds a launchd
+  agent (`net.oxog.phonebox.app`) that opens the app, found by its bundle identifier so moving the app does not break it,
+  at your next login; it is greyed out while `setup.sh`'s own login agent exists (and `setup.sh` removes this one, so the
+  two never both start). Quitting from the system (logout, `osascript`) stops the agent the same way the menu's Quit does. The agent started by `setup.sh` or from a terminal has no menu bar icon; `--menu-bar` adds one,
+  `--no-menu-bar` (or `PHONEBOX_NO_MENU_BAR=1`) removes it from the app.
 - **Windows USB drivers**: if the phone never appears, Windows may need its USB driver. Google phones use the
   Google USB Driver; other brands have one on their support site.
 - **Scoop users**: setup stops if PhoneBox is installed with Scoop, so two copies don't fight over the same port.

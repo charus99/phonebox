@@ -334,6 +334,7 @@ EOF
     ok "systemd user service: $unit"
   else
     mkdir -p "$(dirname "$plist")"
+    rm -f "$(dirname "$plist")/net.oxog.phonebox.app.plist"   # PhoneBox.app's "Start at Login": this agent replaces it, two would start two instances
     cat > "$plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
