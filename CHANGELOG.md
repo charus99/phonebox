@@ -55,8 +55,11 @@
   crashes after some idle time in #389 (#508, [wahackr](https://github.com/wahackr)).
 
 **Setup**
-- macOS: each release also has a disk image, `PhoneBox-<version>-<rid>.dmg`, with PhoneBox.app (no window; the settings
-  are at http://127.0.0.1:8765). It is signed like the zip's agent but not notarized, so macOS asks once in System
+- macOS: PhoneBox.app shows a phone icon in the menu bar: whether the phone is connected, Open Settings, Install
+  update, Check for Updates, Restart Agent, Show Log, Open Config Folder, Start at Login and Quit. The agent installed
+  by `setup.sh` and the zips run as before, without it (#438, [Vasilispapg](https://github.com/Vasilispapg)).
+- macOS: each release also has a disk image, `PhoneBox-<version>-<rid>.dmg`, with PhoneBox.app (a phone icon in the menu bar;
+  the settings are at http://127.0.0.1:8765). It is signed like the zip's agent but not notarized, so macOS asks once in System
   Settings › Privacy & Security › Open Anyway. The app updates itself from the next release's disk image: the image
   is checked against the release's checksums and must be signed by the same identity, and the old app is kept until
   the new one is in place. `scripts/build.sh` builds a .dmg on a Mac or a .tar.gz on Linux from a checkout (#436,
