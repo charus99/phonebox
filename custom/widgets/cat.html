@@ -1,0 +1,240 @@
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  .ground { position: absolute; bottom: 6vh; left: 0; right: 0; height: 2px; background: #2a3140; }
+  #pos { position: absolute; left: 0; bottom: 2.9vh; width: 88vh; will-change: transform; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .roller { transform-origin: 50% 60%; }
+  #flip svg { width: 100%; display: block; overflow: visible; }
+
+  /* ================= ขา ================= */
+  .leg { transform-box: fill-box; transform-origin: 50% 0; transition: transform .3s, opacity .3s; }
+  #pos.walk  { --dur: .42s; --amp: 24deg; }
+  #pos.run   { --dur: .15s; --amp: 40deg; }
+  #pos.dance { --dur: .3s;  --amp: 14deg; }
+  #pos.walk .leg, #pos.run .leg, #pos.dance .leg { animation: step var(--dur) ease-in-out infinite alternate; }
+  #pos.walk .leg.b, #pos.run .leg.b, #pos.dance .leg.b { animation-delay: calc(var(--dur) * -1); }
+  @keyframes step { from { transform: rotate(var(--amp)); } to { transform: rotate(calc(var(--amp) * -1)); } }
+  #pos.jump .leg { animation: none !important; }
+  #pos.jump .leg.front { transform: rotate(-40deg); }
+  #pos.jump .leg.rear  { transform: rotate(40deg); }
+  #pos.sit .leg.rear   { transform: scaleY(.35); }
+  #pos.sleep .leg      { opacity: 0; }
+  #pos.roll .leg       { transform: scaleY(.4); }
+  #pos.crouch .leg     { transform: translateY(10px) scaleY(.69); }
+  #pos.stretch .leg.front { transform: rotate(-60deg); }
+  #pos.scared .leg     { transform: scaleY(1.15); }
+  #pos.groom .leg.front.b { animation: lick .35s ease-in-out infinite alternate; }
+  @keyframes lick { from { transform: rotate(-118deg); } to { transform: rotate(-138deg); } }
+  #pos.bfly .leg.front.b { animation: swat 1.3s ease-in-out infinite; }
+  @keyframes swat { 0%, 30%, 100% { transform: rotate(0); } 50%, 60% { transform: rotate(-155deg); } }
+
+  /* ================= ตัว ================= */
+  #pos.walk .bob, #pos.run .bob { animation: bob calc(var(--dur) / 2) ease-in-out infinite alternate; }
+  @keyframes bob { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+  .bodyg { transform-origin: 45px 102px; transition: transform .45s; }
+  #pos.sit .bodyg     { transform: translateY(8px) rotate(-6deg); }
+  #pos.sleep .bodyg   { transform: translateY(14px) scaleY(.85); }
+  #pos.stretch .bodyg { transform: rotate(9deg); }
+  #pos.scared .bodyg  { transform: translateY(-6px) scaleY(1.15); }
+  #pos.crouch .bodyg  { transform-origin: 140px 100px; animation: wiggle .15s ease-in-out infinite alternate; }
+  @keyframes wiggle { from { transform: translateY(10px) rotate(-3deg); } to { transform: translateY(10px) rotate(3deg); } }
+  #pos.dance .bodyg   { animation: groove .3s ease-in-out infinite alternate; }
+  @keyframes groove { from { transform: translateY(0) rotate(-4deg); } to { transform: translateY(-5px) rotate(4deg); } }
+  #pos.roll .roller   { animation: roll .9s linear infinite; }
+  @keyframes roll { to { transform: rotate(360deg); } }
+
+  /* ================= หัว ================= */
+  .head { transform-origin: 145px 72px; transition: transform .45s; }
+  #pos.sleep .head { transform: translateY(6px) rotate(12deg); }
+  #pos.groom .head { transform: rotate(14deg); }
+  #pos.bfly .head  { transform: rotate(-20deg); }
+  #pos.look .head  { animation: tilt 1.3s ease-in-out infinite alternate; }
+  #pos.dance .head { animation: tilt .6s ease-in-out infinite alternate; }
+  @keyframes tilt { from { transform: rotate(-12deg); } to { transform: rotate(12deg); } }
+  #pos.eat .head   { animation: chomp .25s ease-in-out infinite alternate; }
+  @keyframes chomp { from { transform: translateY(4px) rotate(22deg); } to { transform: translateY(9px) rotate(28deg); } }
+
+  /* ================= หาง ================= */
+  .tail { transform-box: fill-box; transform-origin: 100% 100%; animation: wag 1.1s ease-in-out infinite alternate; }
+  #pos.run .tail, #pos.dance .tail { animation-duration: .3s; }
+  #pos.scared .tail { animation-duration: .08s; }
+  #pos.sleep .tail  { animation-duration: 3.5s; }
+  @keyframes wag { from { transform: rotate(-12deg); } to { transform: rotate(14deg); } }
+
+  /* ================= ตา / ปาก ================= */
+  .eo { transform-box: fill-box; transform-origin: center; transition: transform .2s; }
+  .eo ellipse { transform-box: fill-box; transform-origin: center; animation: blink 4s infinite; }
+  @keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+  .ec, .eh, .mouthO { opacity: 0; }
+  .mouthO { transform-box: fill-box; transform-origin: center; }
+  #pos.sleep .eo, #pos.stretch .eo, #pos.groom .eo, #pos.happy .eo, #pos.dance .eo { opacity: 0; }
+  #pos.sleep .ec, #pos.stretch .ec, #pos.groom .ec { opacity: 1; }
+  #pos.happy .eh, #pos.dance .eh { opacity: 1; }
+  #pos.scared .eo { transform: scale(1.5); }
+  #pos.meow .mouthO, #pos.scared .mouthO { opacity: 1; }
+  #pos.stretch .mouthO { opacity: 1; transform: scale(1.7); }
+
+  /* ================= ของประกอบ ================= */
+  .prop { position: absolute; pointer-events: none; opacity: 0; transition: opacity .35s; }
+  #pos.sleep .zzz, #pos.dance .notes, #pos.bfly .butterfly, #pos.yarn .ball, #pos.eat .fish { opacity: 1; }
+  .zzz, .notes { top: -8%; font: 700 8vh sans-serif; }
+  .zzz { color: #93c5fd; } .notes { color: #c4b5fd; }
+  .zzz span, .notes span { position: absolute; opacity: 0; animation: floatUp 2.4s linear infinite; }
+  .zzz span:nth-child(2), .notes span:nth-child(2) { animation-delay: .8s; }
+  .zzz span:nth-child(3), .notes span:nth-child(3) { animation-delay: 1.6s; }
+  @keyframes floatUp { 0% { transform: translate(0,0) scale(.6); opacity: 0; } 20% { opacity: 1; }
+                       100% { transform: translate(5vh,-16vh) scale(1.2); opacity: 0; } }
+  .bubble { top: -30%; padding: .5vh 2.5vh; background: #fff; color: #111; border-radius: 3vh;
+            font: 700 7vh sans-serif; white-space: nowrap; transform: scale(.5); transition: .2s; }
+  #pos.talk .bubble { opacity: 1; transform: scale(1); }
+  .butterfly { top: -38%; font-size: 10vh; animation: flutter 2.2s ease-in-out infinite; }
+  .butterfly span { display: inline-block; animation: flap .18s ease-in-out infinite alternate; }
+  @keyframes flutter { 0%,100% { transform: translate(0,0); } 25% { transform: translate(7vh,-5vh); }
+                       50% { transform: translate(2vh,4vh); } 75% { transform: translate(-6vh,-3vh); } }
+  @keyframes flap { from { transform: scaleX(1); } to { transform: scaleX(.4); } }
+  .ball { bottom: 4%; font-size: 13vh; line-height: 1; }
+  .ball span { display: inline-block; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .fish { bottom: 4%; font-size: 12vh; line-height: 1; }
+  .heart { position: absolute; top: 0; font-size: 8vh; pointer-events: none; animation: heart 1s ease-out forwards; }
+  @keyframes heart { from { transform: translate(0,0) scale(.5); opacity: 1; }
+                     to { transform: translate(var(--dx), -20vh) scale(1.2); opacity: 0; } }
+</style>
+
+<div class="ground"></div>
+<div id="pos" class="walk">
+  <div class="prop zzz"><span>z</span><span>z</span><span>Z</span></div>
+  <div class="prop notes"><span>♪</span><span>♫</span><span>♪</span></div>
+  <div class="prop bubble">เมี้ยว~</div>
+  <div class="prop butterfly"><span>🦋</span></div>
+  <div class="prop ball"><span>🧶</span></div>
+  <div class="prop fish">🐟</div>
+  <div id="flip"><div class="roller">
+    <svg viewBox="0 0 200 125">
+      <rect class="leg rear b"  x="68"  y="86" width="12" height="32" rx="6" fill="#c2700a"/>
+      <rect class="leg front a" x="128" y="86" width="12" height="32" rx="6" fill="#c2700a"/>
+      <g class="bob"><g class="bodyg">
+        <path class="tail" d="M44 72 Q14 64 18 34 Q20 20 30 24" fill="none" stroke="#f59e0b" stroke-width="10" stroke-linecap="round"/>
+        <ellipse cx="95" cy="74" rx="56" ry="28" fill="#f59e0b"/>
+        <path d="M80 48 q4 14 0 26 M98 46 q4 14 0 28 M116 48 q4 14 0 26" stroke="#d97706" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <g class="head">
+          <polygon points="136,40 140,14 156,32" fill="#f59e0b"/>
+          <polygon points="158,31 172,13 178,40" fill="#f59e0b"/>
+          <polygon points="140,34 142,22 150,31" fill="#fda4af"/>
+          <polygon points="163,30 171,21 173,36" fill="#fda4af"/>
+          <circle cx="157" cy="55" r="26" fill="#f59e0b"/>
+          <g class="eo"><ellipse cx="152" cy="52" rx="3" ry="4.5" fill="#1f2937"/><ellipse cx="167" cy="52" rx="3" ry="4.5" fill="#1f2937"/></g>
+          <path class="ec" d="M148 53 q4 3 8 0 M163 53 q4 3 8 0" stroke="#1f2937" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path class="eh" d="M148 54 q4 -6 8 0 M163 54 q4 -6 8 0" stroke="#1f2937" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="146" cy="62" r="3.5" fill="#fb7185" opacity=".45"/>
+          <path d="M157 61 l4 0 l-2 3 z" fill="#fb7185"/>
+          <path d="M159 64 q-3 5 -7 3 M159 64 q3 5 7 3" stroke="#1f2937" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse class="mouthO" cx="159" cy="68" rx="3" ry="3.5" fill="#7f1d1d"/>
+          <path d="M170 62 l18 -3 M170 66 l18 2 M146 62 l-16 -3 M146 66 l-16 2" stroke="#fff7ed" stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+      </g></g>
+      <rect class="leg rear a"  x="56"  y="86" width="12" height="32" rx="6" fill="#f59e0b"/>
+      <rect class="leg front b" x="116" y="86" width="12" height="32" rx="6" fill="#f59e0b"/>
+    </svg>
+  </div></div>
+</div>
+
+<script>
+  const pos = document.getElementById('pos'), flip = document.getElementById('flip');
+  const $ = (s) => pos.querySelector(s);
+  const bubble = $('.bubble'), headProps = [$('.zzz'), $('.notes'), $('.butterfly')];
+  const frontProps = [$('.ball'), $('.fish')], ballSpin = $('.ball span');
+
+  // w = โอกาสสุ่ม, d = วินาที, v = ความเร็ว (สัดส่วนจอ/วินาที), say = บับเบิล, next = ท่าถัดไปบังคับ
+  const ST = {
+    walk:    { w: 3,   d: [1.5, 3],   v: .10, cls: 'walk' },
+    run:     { w: 1,   d: [1, 2],     v: .38, cls: 'run' },
+    roll:    { w: 1,   d: [1.8, 1.8], v: .18, cls: 'roll' },
+    yarn:    { w: 1,   d: [2.5, 4],   v: .12, cls: 'walk yarn' },
+    jump:    { w: 1.5, d: [.75, .75], v: .20, cls: 'walk jump' },
+    sit:     { w: .6,  d: [2, 3],             cls: 'sit' },
+    look:    { w: 1.2, d: [2, 3],             cls: 'sit look' },
+    meow:    { w: 1.5, d: [1.5, 2],           cls: 'sit meow talk', say: 'เมี้ยว~' },
+    sleep:   { w: .7,  d: [5, 8],             cls: 'sleep', next: 'stretch' },
+    stretch: { w: .5,  d: [2, 2.5],           cls: 'stretch' },
+    groom:   { w: 1.3, d: [2.5, 4],           cls: 'sit groom' },
+    pounce:  { w: 1.5, d: [1.9, 1.9],         cls: 'crouch' },
+    spin:    { w: 1.2, d: [1.5, 2],           cls: 'walk' },
+    bfly:    { w: 1.3, d: [3, 4],             cls: 'sit bfly' },
+    eat:     { w: 1.2, d: [2.5, 3.5],         cls: 'sit eat talk', say: 'ง่ำ ง่ำ' },
+    dance:   { w: 1.3, d: [2.5, 4],           cls: 'dance' },
+    scared:  { w: .8,  d: [1, 1],             cls: 'scared talk', say: '!!', next: 'run' },
+  };
+  const MOVE = ['walk', 'run', 'roll', 'yarn'];
+  const ACTION = Object.keys(ST).filter(k => !MOVE.includes(k));
+
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const arc = (p) => (p >= 1 || p < 0) ? 0 : Math.sin(Math.PI * p);
+  let state = 'walk', start = 0, until = 0, x = 0, dir = 1, last = performance.now(), leapt = false, lastFlip = 0;
+
+  function weighted(keys) {
+    let r = Math.random() * keys.reduce((s, k) => s + ST[k].w, 0);
+    for (const k of keys) if ((r -= ST[k].w) <= 0) return k;
+    return keys[0];
+  }
+  function pick() {
+    if (ST[state].next) return ST[state].next;
+    // เดินเสร็จ → ต้องทำแอ็กชันเสมอ / แอ็กชันเสร็จ → 65% ทำแอ็กชันต่อ, 35% เดินต่อ
+    const pool = MOVE.includes(state) || Math.random() < .65 ? ACTION : MOVE;
+    return weighted(pool.filter(k => k !== state));
+  }
+  function setState(s, now = performance.now()) {
+    state = s; start = now; leapt = false;
+    until = now + rnd(...ST[s].d) * 1000;
+    pos.className = ST[s].cls;
+    if (ST[s].say) bubble.textContent = ST[s].say;
+    if (MOVE.includes(s) && Math.random() < .35) dir *= -1;
+  }
+
+  // แตะแมว: ถ้าหลับอยู่ = สะดุ้ง, ถ้าตื่น = หัวใจ + กระโดด
+  pos.addEventListener('pointerdown', () => {
+    if (state === 'sleep') return setState('scared');
+    setState('jump');
+    pos.classList.add('happy');
+    setTimeout(() => pos.classList.remove('happy'), 1200);
+    for (let i = 0; i < 5; i++) {
+      const h = document.createElement('span');
+      h.className = 'heart'; h.textContent = '❤';
+      h.style.left = (dir > 0 ? 62 : 8) + rnd(-8, 8) + '%';
+      h.style.color = ['#fb7185', '#f43f5e', '#fda4af'][i % 3];
+      h.style.setProperty('--dx', rnd(-7, 7) + 'vh');
+      h.style.animationDelay = i * .1 + 's';
+      pos.appendChild(h);
+      setTimeout(() => h.remove(), 1700);
+    }
+  });
+
+  function tick(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    if (now > until) setState(pick(), now);
+    const t = (now - start) / 1000, H = innerHeight;
+    let v = ST[state].v || 0, y = 0;
+
+    if (state === 'jump')   y = arc(t / .75) * H * .2;
+    if (state === 'scared') y = arc(t / .45) * H * .12;
+    if (state === 'spin' && now - lastFlip > 160) { dir *= -1; lastFlip = now; }
+    if (state === 'pounce' && t > 1.2) {             // หมอบ 1.2 วิ แล้วพุ่ง
+      if (!leapt) { pos.className = 'walk jump'; leapt = true; }
+      v = .55; y = arc((t - 1.2) / .7) * H * .24;
+    }
+
+    const W = innerWidth, w = pos.offsetWidth;
+    x += dir * W * v * dt;
+    if (x > W - w) { x = W - w; dir = -1; }
+    if (x < 0)     { x = 0;     dir = 1; }
+
+    pos.style.transform = `translate(${x}px, ${-y}px)`;
+    flip.style.transform = `scaleX(${dir})`;
+    headProps.forEach(p => p.style.left = (dir > 0 ? 66 : 4) + '%');
+    frontProps.forEach(p => p.style.left = (dir > 0 ? 90 : -10) + '%');
+    bubble.style.left = (dir > 0 ? 52 : -6) + '%';
+    ballSpin.style.animationDirection = dir > 0 ? 'normal' : 'reverse';
+    requestAnimationFrame(tick);
+  }
+  setState('walk');
+  requestAnimationFrame(tick);
+</script>
