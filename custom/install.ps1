@@ -41,7 +41,8 @@ function Get-CheckedFile([string]$Path, [string]$Sha256) {
     $file
 }
 
-function ConvertTo-Utf8Json($Value) { [Text.Encoding]::UTF8.GetBytes((ConvertTo-Json -InputObject $Value -Depth 100 -Compress)) }
+# the leading comma returns the byte array as one object; unrolled, -Body would send "123 34 ..." as text
+function ConvertTo-Utf8Json($Value) { , [Text.Encoding]::UTF8.GetBytes((ConvertTo-Json -InputObject $Value -Depth 100 -Compress)) }
 
 function Get-Settings {
     $response = Invoke-WebRequest -UseBasicParsing "$Base/api/settings"
@@ -94,8 +95,14 @@ if ($hadConfig) {
 }
 
 foreach ($s in $Sections) { $current.Config | Add-Member -NotePropertyName $s -NotePropertyValue $layout.$s -Force }
-Invoke-WebRequest -UseBasicParsing "$Base/api/settings" -Method Put -ContentType 'application/json; charset=utf-8' `
-    -Headers @{ 'X-Config-Version' = $current.Version } -Body (ConvertTo-Utf8Json $current.Config) | Out-Null
+try {
+    Invoke-WebRequest -UseBasicParsing "$Base/api/settings" -Method Put -ContentType 'application/json; charset=utf-8' `
+        -Headers @{ 'X-Config-Version' = $current.Version } -Body (ConvertTo-Utf8Json $current.Config) | Out-Null
+} catch {
+    $why = $_.Exception.Message
+    if ($_.Exception.Response) { try { $why += ' ' + (New-Object IO.StreamReader($_.Exception.Response.GetResponseStream())).ReadToEnd() } catch { } }
+    throw "PhoneBox refused the layout, nothing was changed: $why"
+}
 
 if (-not (Test-SameLayout (Get-Settings).Config $layout)) { throw 'The agent accepted the layout but does not show it; check its log in %LOCALAPPDATA%\PhoneBox\agent.log.' }
 Write-Host "    OK  Layout put on: $(@($layout.pages).Count) pages, $(@($layout.shortcuts).Count) shortcuts. The phone picks it up by itself." -ForegroundColor Green
